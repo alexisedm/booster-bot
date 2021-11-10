@@ -1,8 +1,8 @@
-const { get } = require('axios');
+import axios from 'axios';
 
 const vehiclesAPI = 'https://vpic.nhtsa.dot.gov/api';
 
-const isVINValid = (vin: string) => {
+const validateVIN = (vin: string) => {
   if (!vin) {
     return false;
   }
@@ -16,7 +16,7 @@ const isVINValid = (vin: string) => {
 };
 
 const getVehicleByVIN = async (vin: string) => {
-  const { data } = await get(
+  const { data } = await axios.get(
     `${vehiclesAPI}/vehicles/DecodeVin/${vin}?format=json`
   );
   const { Results } = data;
@@ -28,15 +28,15 @@ const getVehicleByVIN = async (vin: string) => {
       obj.Variable === 'Fuel Type - Primary' ||
       obj.Variable === 'Fuel Type - Secondary'
   );
-  let finalMessage = 'Here you have your car details! :car:\n';
-  for (let detail of vehicle) {
+  let finalMessage = 'The car details! :car:\n';
+  for (const detail of vehicle) {
     finalMessage += `${detail.Variable}: ${detail.Value}\n`;
   }
   return finalMessage;
 };
 
 const getModelsForMake = async (make: any) => {
-  const { data } = await get(
+  const { data } = await axios.get(
     `${vehiclesAPI}/vehicles/getmodelsformake/${make}?format=json`
   );
   const { Results } = data;
@@ -48,7 +48,7 @@ const getModelsForMake = async (make: any) => {
 };
 
 module.exports = {
-  isVINValid,
+  validateVIN,
   getVehicleByVIN,
   getModelsForMake,
 };

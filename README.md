@@ -12,35 +12,36 @@ _This repository contains a [Node](https://nodejs.org) app to implement a slack 
 
 ## Instructions
 
-To use this slack bot, enter to my personal workspace called AlexSoft, (have to send you an invitation. Once joining into worskpace, then you can interact with the bot sending messages in the #software-engineering or #general channel:
+To use this slack bot, enter to my personal workspace called AlexSoft, (have to send you an invitation. Once joining into worskpace, then you can interact with the bot sending messages in the software-engineering or general channel:
 
 Say hello
 
 ```
-Hello @BoosterBot Slack Bot
+Hello @BoosterBot
 ```
 
 Get a vehicle
 
 ```
-VIN 1G8DC18H4CF114023
+@BoosterBot VIN 1G8DC18H4CF114023
 ```
 
 Get all the models
 
 ```
-Make honda 
+@BoosterBot Make honda 
 ```
 
 Quit bot
 
 ```
-Bye
+Bye @BoosterBot
 ```
 
 ## Technologies
 
 [![Javascript](https://img.shields.io/badge/JavaScript-F7DF1E?logo=javascript&logoColor=black)](https://www.javascript.com)
+[![Typescript](https://img.shields.io/badge/TypeScript-FFFFFF?logo=typescript&logoColor=blue)](https://www.typescriptlang.org)
 [![Node](https://img.shields.io/badge/Node.js-43853D?logo=node.js&logoColor=white)](https://nodejs.org)
 [![Eslint](https://img.shields.io/badge/ESLint-4B3263?logo=eslint&logoColor=white)](https://eslint.org)
 [![Docker](https://img.shields.io/badge/docker-%230db7ed.svg?logo=docker&logoColor=white)](https://www.docker.com)
@@ -50,11 +51,9 @@ Bye
 
 ## Architecture
 
-The architecture was build with a [microservice](https://microservices.io) in [Node](https://nodejs.org) and deployed in a [AWS Lambda](https://aws.amazon.com/lambda/), it works with [slack](https://slack.com) when the user mentions the bot or interacts with it. Also, this microservice connects with the [Vehicle API](https://vpic.nhtsa.dot.gov/api/Home) to request the vehicles information.
+The slack bot was build in [Node](https://nodejs.org) and deployed in a [AWS EC2](https://aws.amazon.com/ec2), containerized with [Docker](https://www.docker.com), connects with the [Vehicle API](https://vpic.nhtsa.dot.gov/api/Home) to request the vehicles information. it works with [slack](https://slack.com) when the user mentions the bot or interacts with it.
 
 ## Usage
-
-To execute this [Node](https://nodejs.org) API locally, you can use [serverless offline](https://www.serverless.com/plugins/serverless-offline).
 
 **First, you must have installed [Node](https://nodejs.org/es/) version `14`.**
 

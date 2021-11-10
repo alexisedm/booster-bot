@@ -25,6 +25,7 @@ export const translateSlackRequestBody = (
     },
   };
 };
+export const getParameterFromMessage = (message) => message.text.split(' ')[1];
 
 export const getRandomBotResponse = (userName: string): string => {
   const responses = [

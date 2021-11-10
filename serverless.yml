@@ -1,0 +1,14 @@
+service: aws-lambda-receiver-bolt-js
+frameworkVersion: '2'
+provider:
+  name: aws
+  runtime: nodejs12.x
+functions:
+  slack:
+    handler: app.handler
+    events:
+      - http:
+          path: slack/events
+          method: post
+plugins:
+  - serverless-offline

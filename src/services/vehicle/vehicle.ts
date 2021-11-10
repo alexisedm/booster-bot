@@ -1,4 +1,7 @@
-export type Channel = {
-	id: string;
-	name: string;
-};
+export interface Vehicle {
+  VIN: string;
+  make: string;
+  model: string;
+  year: number;
+  fuelType: 'regular' | 'premium';
+}
