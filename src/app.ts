@@ -34,7 +34,7 @@ const awsLambdaReceiver = new AwsLambdaReceiver({
 
 // Initializes your app with your bot token and the AWS Lambda ready receiver
 const app = new App({
-  token: process.env.SLACK_BOT_TOKEN,
+  token: process.env.SLACK_TOKEN,
   receiver: awsLambdaReceiver,
   // The `processBeforeResponse` option is required for all FaaS environments.
   // It allows Bolt methods (e.g. `app.message`) to handle a Slack request
