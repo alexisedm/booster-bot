@@ -1,0 +1,39 @@
+name: Node.js CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  main:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: ['14']
+    steps:
+    - uses: actions/checkout@v2
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v2
+      with:
+        node-version: ${{ matrix.node-version }}
+        cache: 'npm'
+    - name: Create env file
+      run: |
+        touch .env
+        echo SLACK_SIGNING_SECRET=${{ secrets.SLACK_SIGNING_SECRET }} >> .env
+        echo SLACK_TOKEN=${{ secrets.SLACK_TOKEN }} >> .env
+    - name: Install NPM dependencies
+      run: npm ci
+    - name: Check ESLint
+      run: npm run lint
+    - name: Run tests
+      run: npm test
+    - name: Serverless
+    - uses: serverless/github-action@v1.53.0
+      with:
+        args: deploy
+      env:
+        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
