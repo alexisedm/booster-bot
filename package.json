@@ -5,6 +5,7 @@
   "main": "dist/app.js",
   "scripts": {
     "start": "tsc && node dist/app.js",
+    "ngrok": "ngrok http 3000",
     "test": "echo test",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix"
