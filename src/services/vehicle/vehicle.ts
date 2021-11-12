@@ -3,5 +3,5 @@ export interface Vehicle {
   make: string;
   model: string;
   year: number;
-  fuelType: 'regular' | 'premium';
+  fuelType: 'regular' | 'premium' | 'other';
 }

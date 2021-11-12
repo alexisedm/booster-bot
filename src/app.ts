@@ -5,7 +5,6 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import { createEventAdapter } from '@slack/events-api';
 require('dotenv').config();
-
 const axios = require('axios');
 const {
   incorrectVINMessage,
@@ -36,10 +35,6 @@ const awsLambdaReceiver = new AwsLambdaReceiver({
 const app = new App({
   token: process.env.SLACK_TOKEN,
   receiver: awsLambdaReceiver,
-  // The `processBeforeResponse` option is required for all FaaS environments.
-  // It allows Bolt methods (e.g. `app.message`) to handle a Slack request
-  // before the Bolt framework responds to the request (e.g. `ack()`). This is
-  // important because FaaS immediately terminate handlers after the response.
   processBeforeResponse: true,
 });
 // Plug the adapter in as a middleware
@@ -57,11 +52,9 @@ server.listen(port, () => {
 });
 
 /* Add functionality here */
-
 (async () => {
   // Start the app
   await app.start(process.env.PORT || 3000);
-
   console.log('⚡️ Bolt app is running!');
 })();
 
